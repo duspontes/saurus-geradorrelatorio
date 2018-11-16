@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaurusRelatorio", "SaurusRelatorio\SaurusRelatorio.csproj", "{E257E592-465D-4CB4-8210-3BDE58647AE6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E257E592-465D-4CB4-8210-3BDE58647AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E257E592-465D-4CB4-8210-3BDE58647AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E257E592-465D-4CB4-8210-3BDE58647AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E257E592-465D-4CB4-8210-3BDE58647AE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0F5C039-8997-419A-8E88-CC2953B03DE8}
+	EndGlobalSection
+EndGlobal
