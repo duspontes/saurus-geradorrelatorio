@@ -10,3 +10,15 @@ c:\users\robso\source\repos\SaurusRelatorio\SaurusRelatorio\obj\Debug\SaurusRela
 c:\users\robso\source\repos\SaurusRelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.Form1.resources
 c:\users\robso\source\repos\SaurusRelatorio\SaurusRelatorio\bin\Debug\itextsharp.dll
 c:\users\robso\source\repos\SaurusRelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.csproj.CopyComplete
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\bin\Debug\SaurusRelatorio.exe.config
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\bin\Debug\SaurusRelatorio.exe
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\bin\Debug\SaurusRelatorio.pdb
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\bin\Debug\itextsharp.dll
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.csprojAssemblyReference.cache
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.Form1.resources
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.Properties.Resources.resources
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.csproj.GenerateResource.cache
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.csproj.CoreCompileInputs.cache
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.csproj.CopyComplete
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.exe
+C:\Users\robso\projetos\saurusrelatorio\SaurusRelatorio\obj\Debug\SaurusRelatorio.pdb

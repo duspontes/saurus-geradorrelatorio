@@ -86,5 +86,10 @@ namespace SaurusRelatorio
             //Abrindo PDF
             System.Diagnostics.Process.Start("C:\\saurus\\DataGridViewExport.pdf");
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
     }
 }
