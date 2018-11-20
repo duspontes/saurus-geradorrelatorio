@@ -18,27 +18,66 @@ using iTextSharp.text;
 
 namespace SaurusRelatorio
 {
-    public partial class Form1 : Form
+    public partial class frmPrincipal : Form
     {
         string connectionString = @"Data Source=(localdb)\mssqllocaldb; Initial Catalog = dbsaurus_pdvfit; Integrated Security=True;";
+        string var_query;
 
-        public Form1()
+        public frmPrincipal()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnVendaCupom_Click(object sender, EventArgs e)
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString)) {
                 sqlCon.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM tbCaixaDados", sqlCon);
+
+                var_query = "SELECT COUNT(DISTINCT tbProd.prod_idMov) AS qtdVendas, " +
+                     "SUM(IIF(indImposto = 'TT', vFinal, 0))  AS Icms_vBc,  " +
+                     "SUM(prod_icms_vIcms) AS Icms_vIcms, " +
+                     "SUM(IIF(indImposto = 'FF', vFinal, 0))  AS Icms_vlSubst,  " +
+                     "SUM(IIF(indImposto = 'II', vFinal, 0))  AS Icms_vlIsento, " +
+                     "SUM(IIF(indImposto = 'NN', vFinal, 0))  AS  Icms_vlNaoTrib " +
+                     "FROM tbMovDados d " +
+                     "INNER JOIN(SELECT " +
+                     " p.prod_idMov, " +
+                     "p.vFinal, " +
+                     "i.prod_icms_cst, " +
+                     "i.prod_icms_vBc, " +
+                     "i.prod_icms_vIcms, " +
+                     "CASE " +
+                     "WHEN i.prod_icms_cst IN('10', '60', '70', '201', '202', '203', '500') THEN 'FF' " +
+                     "WHEN i.prod_icms_cst IN('40', '41', '400') THEN 'II' " +
+                     "WHEN i.prod_icms_cst IN('50', '51', '300') THEN 'NN' " +
+                     "ELSE 'TT' " +
+                     "END AS indImposto " +
+                     "FROM tbMovProdImpostos i " +
+                     "INNER JOIN vwMovProd p " +
+                     "ON i.prod_idProd = p.prod_idProd " +
+                     "  WHERE   p.prod_indStatus = 0 " +
+                     ")   AS tbProd " +
+                     "ON tbProd.prod_idMov = d.mov_idMov " +
+                     "INNER JOIN tbMovSessoes ms " +
+                     "ON d.mov_idSessao = ms.mov_idSessao " +
+                     "INNER JOIN tbCaixaDados c " +
+                     "ON ms.mov_idCaixa = c.cai_idCaixa " +
+                     "OUTER APPLY dbo.fn_retMovStatusTable(d.mov_idMov) s " +
+                     "WHERE s.mov_indStatus = 2 " +
+                     "AND mov_tpAmb = 1 ";                    
+
+                if (dtpInicial.Text.Length > 0) {var_query += "AND d.mov_dhEmi >= '" + dtpInicial.Value.Date.ToString("yyyy-MM-dd") + "' ";}
+                if (dtpFinal.Text.Length > 0){var_query += "AND d.mov_dhEmi <= '" + dtpFinal.Value.Date.ToString("yyyy-MM-dd") + "' ";}
+                if (tbCaixa.Text.Length > 0) { var_query += "AND c.cai_numCaixa =  '" + tbCaixa.Text + "' "; }
+
+                SqlDataAdapter sqlDa = new SqlDataAdapter(var_query, sqlCon);
                 DataTable dtb1 = new DataTable();
                 sqlDa.Fill(dtb1);
                 dataGridView1.DataSource = dtb1;
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnExportar_Click(object sender, EventArgs e)
         {
             PdfPTable pdfTable = new PdfPTable(dataGridView1.ColumnCount);
             pdfTable.DefaultCell.Padding = 3;
@@ -87,9 +126,21 @@ namespace SaurusRelatorio
             System.Diagnostics.Process.Start("C:\\saurus\\DataGridViewExport.pdf");
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnSair_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Application.Exit();
+        }
+
+        private void btnTeste_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM tbCaixaDados", sqlCon);
+                DataTable dtb1 = new DataTable();
+                sqlDa.Fill(dtb1);
+                dataGridView1.DataSource = dtb1;
+            }
         }
     }
 }
