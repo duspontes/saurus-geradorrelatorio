@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
-            this.btnVendaCupom = new System.Windows.Forms.Button();
+            this.btnVendaCupomTrib = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnExportar = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbQuery = new System.Windows.Forms.TextBox();
             this.dtpInicial = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpFinal = new System.Windows.Forms.DateTimePicker();
@@ -44,6 +44,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnExecutar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnPrincipal.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -51,21 +52,22 @@
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnVendaCupom
+            // btnVendaCupomTrib
             // 
-            this.btnVendaCupom.BackColor = System.Drawing.Color.DarkBlue;
-            this.btnVendaCupom.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnVendaCupom.ForeColor = System.Drawing.Color.White;
-            this.btnVendaCupom.Location = new System.Drawing.Point(0, 86);
-            this.btnVendaCupom.Name = "btnVendaCupom";
-            this.btnVendaCupom.Size = new System.Drawing.Size(152, 91);
-            this.btnVendaCupom.TabIndex = 0;
-            this.btnVendaCupom.Text = "Vendas Cupom";
-            this.btnVendaCupom.UseVisualStyleBackColor = false;
-            this.btnVendaCupom.Click += new System.EventHandler(this.btnVendaCupom_Click);
+            this.btnVendaCupomTrib.BackColor = System.Drawing.Color.DarkBlue;
+            this.btnVendaCupomTrib.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnVendaCupomTrib.ForeColor = System.Drawing.Color.White;
+            this.btnVendaCupomTrib.Location = new System.Drawing.Point(0, 0);
+            this.btnVendaCupomTrib.Name = "btnVendaCupomTrib";
+            this.btnVendaCupomTrib.Size = new System.Drawing.Size(152, 100);
+            this.btnVendaCupomTrib.TabIndex = 0;
+            this.btnVendaCupomTrib.Text = "Vendas Cupom";
+            this.btnVendaCupomTrib.UseVisualStyleBackColor = false;
+            this.btnVendaCupomTrib.Click += new System.EventHandler(this.btnVendaCupomTrib_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.MenuHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -83,18 +85,18 @@
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(152, 100);
             this.btnExportar.TabIndex = 2;
-            this.btnExportar.Text = "Exportar";
+            this.btnExportar.Text = "Gerar PDF";
             this.btnExportar.UseVisualStyleBackColor = false;
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
-            // textBox2
+            // tbQuery
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox2.Location = new System.Drawing.Point(152, 100);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(1270, 155);
-            this.textBox2.TabIndex = 4;
+            this.tbQuery.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tbQuery.Location = new System.Drawing.Point(152, 100);
+            this.tbQuery.Multiline = true;
+            this.tbQuery.Name = "tbQuery";
+            this.tbQuery.Size = new System.Drawing.Size(1270, 155);
+            this.tbQuery.TabIndex = 4;
             // 
             // dtpInicial
             // 
@@ -103,6 +105,7 @@
             this.dtpInicial.Name = "dtpInicial";
             this.dtpInicial.Size = new System.Drawing.Size(113, 26);
             this.dtpInicial.TabIndex = 5;
+            this.dtpInicial.ValueChanged += new System.EventHandler(this.dtpInicial_ValueChanged);
             // 
             // label1
             // 
@@ -120,6 +123,7 @@
             this.dtpFinal.Name = "dtpFinal";
             this.dtpFinal.Size = new System.Drawing.Size(113, 26);
             this.dtpFinal.TabIndex = 7;
+            this.dtpFinal.ValueChanged += new System.EventHandler(this.dtpFinal_ValueChanged);
             // 
             // label2
             // 
@@ -136,6 +140,7 @@
             this.tbCaixa.Name = "tbCaixa";
             this.tbCaixa.Size = new System.Drawing.Size(100, 26);
             this.tbCaixa.TabIndex = 9;
+            this.tbCaixa.TextChanged += new System.EventHandler(this.tbCaixa_TextChanged);
             // 
             // btnSair
             // 
@@ -155,9 +160,9 @@
             this.btnTeste.BackColor = System.Drawing.Color.DarkBlue;
             this.btnTeste.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnTeste.ForeColor = System.Drawing.Color.White;
-            this.btnTeste.Location = new System.Drawing.Point(0, 0);
+            this.btnTeste.Location = new System.Drawing.Point(0, 100);
             this.btnTeste.Name = "btnTeste";
-            this.btnTeste.Size = new System.Drawing.Size(152, 86);
+            this.btnTeste.Size = new System.Drawing.Size(152, 96);
             this.btnTeste.TabIndex = 11;
             this.btnTeste.Text = "Teste";
             this.btnTeste.UseVisualStyleBackColor = false;
@@ -186,8 +191,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnVendaCupom);
             this.panel2.Controls.Add(this.btnTeste);
+            this.panel2.Controls.Add(this.btnVendaCupomTrib);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -197,6 +202,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.btnExecutar);
             this.panel3.Controls.Add(this.dtpFinal);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.tbCaixa);
@@ -208,6 +214,17 @@
             this.panel3.Size = new System.Drawing.Size(1270, 100);
             this.panel3.TabIndex = 15;
             // 
+            // btnExecutar
+            // 
+            this.btnExecutar.BackColor = System.Drawing.Color.Gold;
+            this.btnExecutar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnExecutar.Location = new System.Drawing.Point(1118, 0);
+            this.btnExecutar.Name = "btnExecutar";
+            this.btnExecutar.Size = new System.Drawing.Size(152, 100);
+            this.btnExecutar.TabIndex = 10;
+            this.btnExecutar.Text = "Executar";
+            this.btnExecutar.UseVisualStyleBackColor = false;
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -217,19 +234,16 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1422, 753);
             this.Controls.Add(this.pnPrincipal);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.tbQuery);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
             this.Name = "frmPrincipal";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Saurus Relatorio";
-            this.TopMost = true;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnPrincipal.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -243,10 +257,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnVendaCupom;
+        private System.Windows.Forms.Button btnVendaCupomTrib;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnExportar;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbQuery;
         private System.Windows.Forms.DateTimePicker dtpInicial;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpFinal;
@@ -258,6 +272,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnExecutar;
     }
 }
 

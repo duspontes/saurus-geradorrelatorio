@@ -22,14 +22,45 @@ namespace SaurusRelatorio
     {
         string connectionString = @"Data Source=(localdb)\mssqllocaldb; Initial Catalog = dbsaurus_pdvfit; Integrated Security=True;";
         string var_query;
+        string var_btn;
+
+        public void statusBtn()
+        {
+            btnTeste.BackColor = System.Drawing.Color.DarkBlue;
+            btnVendaCupomTrib.BackColor = System.Drawing.Color.DarkBlue;
+
+            switch (var_btn)
+            {
+                case "teste":
+                    btnTeste.BackColor = System.Drawing.Color.Green;
+                    break;
+                case "vendacupomtrib":
+                    btnVendaCupomTrib.BackColor = System.Drawing.Color.Green;
+                    break;
+            }
+        }
+
+        public void chamarBtnClick()
+        {
+            switch (var_btn)
+            {
+                case "vendacupomtrib":
+                    btnVendaCupomTrib.PerformClick();
+                    break;              
+            }
+
+        }
 
         public frmPrincipal()
         {
             InitializeComponent();
         }
 
-        private void btnVendaCupom_Click(object sender, EventArgs e)
+        private void btnVendaCupomTrib_Click(object sender, EventArgs e)
         {
+            var_btn = "vendacupomtrib";
+            statusBtn();
+
             using (SqlConnection sqlCon = new SqlConnection(connectionString)) {
                 sqlCon.Open();
 
@@ -70,6 +101,7 @@ namespace SaurusRelatorio
                 if (dtpFinal.Text.Length > 0){var_query += "AND d.mov_dhEmi <= '" + dtpFinal.Value.Date.ToString("yyyy-MM-dd") + "' ";}
                 if (tbCaixa.Text.Length > 0) { var_query += "AND c.cai_numCaixa =  '" + tbCaixa.Text + "' "; }
 
+                tbQuery.Text = var_query;
                 SqlDataAdapter sqlDa = new SqlDataAdapter(var_query, sqlCon);
                 DataTable dtb1 = new DataTable();
                 sqlDa.Fill(dtb1);
@@ -133,14 +165,34 @@ namespace SaurusRelatorio
 
         private void btnTeste_Click(object sender, EventArgs e)
         {
+            var_btn = "teste";
+            statusBtn();
+            
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                SqlDataAdapter sqlDa = new SqlDataAdapter("SELECT * FROM tbCaixaDados", sqlCon);
+                var_query = "SELECT * FROM tbCaixaDados";
+                tbQuery.Text = var_query;
+                SqlDataAdapter sqlDa = new SqlDataAdapter(var_query, sqlCon);
                 DataTable dtb1 = new DataTable();
                 sqlDa.Fill(dtb1);
                 dataGridView1.DataSource = dtb1;
             }
+        }
+
+        private void dtpInicial_ValueChanged(object sender, EventArgs e)
+        {
+            chamarBtnClick();
+        }
+
+        private void dtpFinal_ValueChanged(object sender, EventArgs e)
+        {
+            chamarBtnClick();
+        }
+
+        private void tbCaixa_TextChanged(object sender, EventArgs e)
+        {
+            chamarBtnClick();
         }
     }
 }
