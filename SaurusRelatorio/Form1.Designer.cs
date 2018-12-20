@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.btnVendaCupomTrib = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnExportar = new System.Windows.Forms.Button();
@@ -61,7 +60,7 @@
             this.btnVendaCupomTrib.Name = "btnVendaCupomTrib";
             this.btnVendaCupomTrib.Size = new System.Drawing.Size(152, 100);
             this.btnVendaCupomTrib.TabIndex = 0;
-            this.btnVendaCupomTrib.Text = "Vendas Cupom";
+            this.btnVendaCupomTrib.Text = "Vendas Tributação";
             this.btnVendaCupomTrib.UseVisualStyleBackColor = false;
             this.btnVendaCupomTrib.Click += new System.EventHandler(this.btnVendaCupomTrib_Click);
             // 
@@ -78,9 +77,10 @@
             // 
             // btnExportar
             // 
-            this.btnExportar.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnExportar.BackColor = System.Drawing.Color.Navy;
             this.btnExportar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnExportar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnExportar.Location = new System.Drawing.Point(0, 0);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(152, 100);
@@ -144,9 +144,10 @@
             // 
             // btnSair
             // 
-            this.btnSair.BackColor = System.Drawing.Color.Crimson;
+            this.btnSair.BackColor = System.Drawing.Color.Navy;
             this.btnSair.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSair.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnSair.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSair.Location = new System.Drawing.Point(1270, 0);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(152, 100);
@@ -164,7 +165,7 @@
             this.btnTeste.Name = "btnTeste";
             this.btnTeste.Size = new System.Drawing.Size(152, 96);
             this.btnTeste.TabIndex = 11;
-            this.btnTeste.Text = "Teste";
+            this.btnTeste.Text = "Liberar para Leitura";
             this.btnTeste.UseVisualStyleBackColor = false;
             this.btnTeste.Click += new System.EventHandler(this.btnTeste_Click);
             // 
@@ -216,8 +217,9 @@
             // 
             // btnExecutar
             // 
-            this.btnExecutar.BackColor = System.Drawing.Color.Gold;
+            this.btnExecutar.BackColor = System.Drawing.Color.Navy;
             this.btnExecutar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnExecutar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnExecutar.Location = new System.Drawing.Point(1118, 0);
             this.btnExecutar.Name = "btnExecutar";
             this.btnExecutar.Size = new System.Drawing.Size(152, 100);
@@ -230,7 +232,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1422, 753);
             this.Controls.Add(this.pnPrincipal);

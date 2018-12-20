@@ -31,7 +31,7 @@ namespace SaurusRelatorio
 
             switch (var_btn)
             {
-                case "teste":
+                case "cancelamento":
                     btnTeste.BackColor = System.Drawing.Color.Green;
                     break;
                 case "vendacupomtrib":
@@ -106,6 +106,7 @@ namespace SaurusRelatorio
                 DataTable dtb1 = new DataTable();
                 sqlDa.Fill(dtb1);
                 dataGridView1.DataSource = dtb1;
+                MessageBox.Show("Query Executada com sucesso!");
             }
         }
 
@@ -165,19 +166,42 @@ namespace SaurusRelatorio
 
         private void btnTeste_Click(object sender, EventArgs e)
         {
-            var_btn = "teste";
+            var_btn = "cancelamento";
             statusBtn();
-            
-            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+
+            var result = MessageBox.Show("Tem certeza que deseja liberar para leitura o perido " + dtpInicial.Value.Date.ToString("dd/MM/yyyy") + " à " + dtpFinal.Value.Date.ToString("dd/MM/yyyy") + "?", "", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
             {
-                sqlCon.Open();
-                var_query = "SELECT * FROM tbCaixaDados";
-                tbQuery.Text = var_query;
-                SqlDataAdapter sqlDa = new SqlDataAdapter(var_query, sqlCon);
-                DataTable dtb1 = new DataTable();
-                sqlDa.Fill(dtb1);
-                dataGridView1.DataSource = dtb1;
+
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    var_query = "UPDATE tbmovstatus SET sys_idenvio = NULL " +
+                                "WHERE mov_idmov IN " +
+                                "(SELECT mov_idmov FROM tbmovdados WHERE Cast(mov_dhemi AS DATE) >= '" + dtpInicial.Value.Date.ToString("yyyy-MM-dd") + "' AND " +
+                                "Cast(mov_dhemi AS DATE) <= '" + dtpFinal.Value.Date.ToString("yyyy-MM-dd") + "') ";
+
+                    tbQuery.Text = var_query;
+                    SqlCommand command = new SqlCommand(var_query, sqlCon);
+                    command.ExecuteNonQuery();
+
+                    var_query = "UPDATE tbmovdados SET sys_idenvio = NULL " +
+                                "WHERE Cast(mov_dhemi AS DATE) >= '" + dtpInicial.Value.Date.ToString("yyyy-MM-dd") + "' " +
+                                "AND Cast(mov_dhemi AS DATE) <= '" + dtpFinal.Value.Date.ToString("yyyy-MM-dd") + "' ";
+
+                    tbQuery.Text = tbQuery.Text + " \n" + var_query;
+                    SqlCommand command2 = new SqlCommand(var_query, sqlCon);
+                    command2.ExecuteNonQuery();
+
+                    dataGridView1.DataSource = "";
+                    MessageBox.Show("Liberado para leitura o perido "+ dtpInicial.Value.Date.ToString("dd/MM/yyyy") + " à " + dtpFinal.Value.Date.ToString("dd/MM/yyyy"));
+
+                }
+
             }
+
+                
         }
 
         private void dtpInicial_ValueChanged(object sender, EventArgs e)
